@@ -1,9 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import avatar from '../assets/profile.png';
+import { useFormik } from 'formik';
 
 import styles from '../styles/Username.module.css'
 export default function Username(){
+
+    const formik = useFormik({
+        initialValues:{
+            username:""
+        },
+        validateOnBlur: false,
+        validateOnChange:false,
+        onSubmit: async (values)=>{
+            console.log(values);
+        }
+
+    })
     return (
         <div className='container mx-auto'>
             <div className='flex justify-center items-center h-screen'>
@@ -14,7 +27,7 @@ export default function Username(){
                     Explore More By connecting with us
                 </span>
                 </div>
-                <form className='py-1'>
+                <form className='py-1' onSubmit={formik.handleSubmit}>
                     <div className='profile flex justify-center py-4'>
                       <img src={avatar} className={styles.profile_img} alt="avatar" width="200" height="200" /> 
                     </div>
