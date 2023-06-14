@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import avatar from '../assets/profile.png';
+import { usernameValidate } from '../helper/validate';
 import { useFormik } from 'formik';
-
+import {Toaster} from 'react-hot-toast';
 import styles from '../styles/Username.module.css'
 export default function Username(){
 
@@ -10,6 +11,7 @@ export default function Username(){
         initialValues:{
             username:""
         },
+        validate: usernameValidate,
         validateOnBlur: false,
         validateOnChange:false,
         onSubmit: async (values)=>{
@@ -19,6 +21,7 @@ export default function Username(){
     })
     return (
         <div className='container mx-auto'>
+            <Toaster position='top-center' reverseOrder></Toaster>
             <div className='flex justify-center items-center h-screen'>
                 <div className={styles.glass}>
             <div className='title flex flex-col items-center'>
@@ -32,7 +35,7 @@ export default function Username(){
                       <img src={avatar} className={styles.profile_img} alt="avatar" width="200" height="200" /> 
                     </div>
                     <div className='textbox flex flex-col items-center gap-6'>
-                        <input className={styles.textbox} type = 'text' placeholder='Username' />
+                        <input{...formik.getFieldProps('username')} className={styles.textbox} type = 'text' placeholder='Username' />
                         <button className={styles.btn} type = 'submit'>Let's Go</button>
                     </div>
                     <div className='text-center py-4'>
