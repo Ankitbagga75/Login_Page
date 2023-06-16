@@ -21,7 +21,7 @@ export default function Password(){
     })
     return (
         <div className='container mx-auto'>
-            <Toaster position='top-center' reverseOrder></Toaster>
+            <Toaster position='top-center' reverseOrder={false}></Toaster>
             <div className='flex justify-center items-center h-screen'>
                 <div className={styles.glass}>
             <div className='title flex flex-col items-center'>
