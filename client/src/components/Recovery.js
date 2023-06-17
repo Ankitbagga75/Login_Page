@@ -8,7 +8,7 @@ export default function Recovery(){
             <Toaster position='top-center' reverseOrder={false}></Toaster>
             <div className='flex justify-center items-center h-screen'>
                 <div className={styles.glass}>
-            <div className='title flex flex-col items-center'>
+            <div className='title flex flex-col items-center' style={{padding: "29px"}}>
                 <h4 className='text-5xl font-bold'> Recovery</h4>
                 <span className='py-4 text-xl w-2/3 text-center text-gray-500'>
                     Enter OTP to recover password
