@@ -26,10 +26,6 @@
     background-color: #ff6a6a;
 }
 
-input[type='filter']{
-    display: none;
-}
-
 input[type='file']
 {
     display: none;

@@ -5,8 +5,9 @@ import { passwordValidate } from '../helper/validate';
 import { useFormik } from 'formik';
 import {Toaster} from 'react-hot-toast';
 import styles from '../styles/Username.module.css'
+import { useState } from 'react';
 export default function Register(){
-
+    const [file,setFile] = useState()
     const formik = useFormik({
         initialValues:{
             email:"",
@@ -19,8 +20,12 @@ export default function Register(){
         onSubmit: async (values)=>{
             console.log(values);
         }
-
     })
+
+    const onUpload = async e=>{
+        const base64 = '';
+        setFile(base64);
+    }
     return (
         <div className='container mx-auto'>
             <Toaster position='top-center' reverseOrder={false}></Toaster>
@@ -34,10 +39,10 @@ export default function Register(){
                 </div>
                 <form className='py-1' onSubmit={formik.handleSubmit}>
                     <div className='profile flex justify-center py-4'>
-                        <label htmlFor=''>
+                        <label htmlFor='profile'>
                         <img src={avatar} className={styles.profile_img} alt="avatar" width="200" height="200" /> 
                         </label>
-                        <input type="file" id='profile' />
+                        <input type="file" id='profile' name='profile' />
                     </div>
                     <div className='textbox flex flex-col items-center gap-6'>
                         <input{...formik.getFieldProps('email')} className={styles.textbox} type = 'text' placeholder='Email' />
