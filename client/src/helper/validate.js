@@ -1,4 +1,4 @@
-import toast from 'react-hot-toast'
+import toast, { ErrorIcon } from 'react-hot-toast'
 
 export async function usernameValidate (values){
     const errors = usernameVerify({},values);
@@ -10,6 +10,14 @@ export async function passwordValidate (values){
 
 export async function resetPasswordValidate (values){
     const erros = resetPasswordVerify({},values);
+}
+
+export async function registerValidate (values){
+    const errors = usernameVerify({},values);
+    passwordVerify(errors,values);
+    emailVerify(errors,values);
+
+    return errors; 
 }
 
 function resetPasswordVerify(error = {},values){
@@ -64,4 +72,19 @@ function passwordVerify(error={},values){
      
 
     return error;
+}
+
+function emailVerify(error ={}, values){
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!values.email){
+        error.email = toast.error("Email Required.....!")
+    }
+    else if(values.email.includes(' ')){
+        error.email = toast.error("Wrong Email.....!")
+    }
+    else if (!emailRegex.test(values.email)){
+        error.email = toast.error("Invalid Email....!")
+    }
+
+    return error; 
 }
