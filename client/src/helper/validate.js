@@ -12,6 +12,10 @@ export async function resetPasswordValidate (values){
     const erros = resetPasswordVerify({},values);
 }
 
+export async function profileValidate (values){
+    const erros = emailVerify({},values);
+}
+
 export async function registerValidate (values){
     const errors = usernameVerify({},values);
     passwordVerify(errors,values);

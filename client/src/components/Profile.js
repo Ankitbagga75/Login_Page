@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import avatar from '../assets/profile.png';
-import { registerValidate } from '../helper/validate';
+import { profileValidate } from '../helper/validate';
 import { useFormik } from 'formik';
 import {Toaster} from 'react-hot-toast';
 import styles from '../styles/Username.module.css'
@@ -20,7 +20,7 @@ export default function Profile(){
             mobile: "",
             address: ""
         },
-        validate: registerValidate,
+        validate: profileValidate,
         validateOnBlur: false,
         validateOnChange:false,
         onSubmit: async (values)=>{
@@ -47,25 +47,25 @@ export default function Profile(){
                 <form className='py-1' onSubmit={formik.handleSubmit}>
                     <div className='profile flex justify-center py-4'>
                         <label htmlFor='profile'>
-                        <img src={file || avatar} className={styles.profile_img} alt="avatar" /> 
+                        <img src={file || avatar} className={`${styles.profile_img} ${extend.profile_img}`} alt="avatar" /> 
                         </label>
                         <input onChange={onUpload} type="file" id='profile' name='profile' />
                     </div>
                     <div className='textbox flex flex-col items-center gap-6'>
                         <div className='name flex w-3/4 gap-10'>
-                            <input{...formik.getFieldProps('firstname')} className={styles.textbox} type = 'text' placeholder='FirstName' />
-                            <input{...formik.getFieldProps('lastname')} className={styles.textbox} type = 'text' placeholder='LastName' />  
+                            <input{...formik.getFieldProps('firstname')} className={`${styles.textbox} ${extend.textbox}`} type = 'text' placeholder='FirstName' />
+                            <input{...formik.getFieldProps('lastname')} className={`${styles.textbox} ${extend.textbox}`} type = 'text' placeholder='LastName' />  
                         </div>
 
                         <div className='name flex w-3/4 gap-10'>
-                            <input{...formik.getFieldProps('mobile')} className={styles.textbox} type = 'text' placeholder='Mobile' />
-                            <input{...formik.getFieldProps('email')} className={styles.textbox} type = 'text' placeholder='Email*' />  
+                            <input{...formik.getFieldProps('mobile')} className={`${styles.textbox} ${extend.textbox}`} type = 'text' placeholder='Mobile' />
+                            <input{...formik.getFieldProps('email')} className={`${styles.textbox} ${extend.textbox}`} type = 'text' placeholder='Email*' />  
                         </div>
                         
                         <div className='name flex w-3/4 gap-10'>
-                            <input{...formik.getFieldProps('address')} className={styles.textbox} type = 'text' placeholder='Address' />
-                            <button className={styles.btn} type = 'submit'>Let's Go</button>
+                            <input{...formik.getFieldProps('address')} className={`${styles.textbox} ${extend.textbox}`} type = 'text' placeholder='Address' />
                         </div>               
+                        <button className={styles.btn} type = 'submit'>Update</button>
                     </div>
                     <div className='text-center py-4'>
                         <span className='text=gray-500'>Come back later? <Link className='text-red-500' to='/'>Logout</Link></span>
